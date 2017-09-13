@@ -49,22 +49,22 @@ class HomeScene extends PureComponent {
             />
         ),
         headerStyle: { backgroundColor: color.theme },
-    })
+    });
 
     state: {
         discounts: Array<Object>,
         dataList: Array<Object>,
         refreshing: boolean,
-    }
+    };
 
     constructor(props: Object) {
-        super(props)
+        super(props);
 
         this.state = {
             discounts: [],
             dataList: [],
             refreshing: false,
-        }
+        };
 
         { (this: any).requestData = this.requestData.bind(this) }
         { (this: any).renderCell = this.renderCell.bind(this) }
@@ -80,16 +80,16 @@ class HomeScene extends PureComponent {
     }
 
     requestData() {
-        this.setState({ refreshing: true })
+        this.setState({ refreshing: true });
 
-        this.requestDiscount()
+        this.requestDiscount();
         this.requestRecommend()
     }
 
     async requestRecommend() {
         try {
-            let response = await fetch(api.recommend)
-            let json = await response.json()
+            let response = await fetch(api.recommend);
+            let json = await response.json();
 
             let dataList = json.data.map(
                 (info) => {
@@ -101,7 +101,7 @@ class HomeScene extends PureComponent {
                         price: info.price
                     }
                 }
-            )
+            );
 
             this.setState({
                 dataList: dataList,
@@ -114,8 +114,8 @@ class HomeScene extends PureComponent {
 
     async requestDiscount() {
         try {
-            let response = await fetch(api.discount)
-            let json = await response.json()
+            let response = await fetch(api.discount);
+            let json = await response.json();
             this.setState({ discounts: json.data })
         } catch (error) {
             alert(error)
@@ -132,7 +132,7 @@ class HomeScene extends PureComponent {
     }
 
     onCellSelected(info: Object) {
-        StatusBar.setBarStyle('default', false)
+        StatusBar.setBarStyle('default', false);
         this.props.navigation.navigate('GroupPurchase', { info: info })
     }
 
@@ -159,13 +159,13 @@ class HomeScene extends PureComponent {
     }
 
     onGridSelected(index: number) {
-        let discount = this.state.discounts[index]
+        let discount = this.state.discounts[index];
 
-        if (discount.type == 1) {
-            StatusBar.setBarStyle('default', false)
+        if (discount.type === 1) {
+            StatusBar.setBarStyle('default', false);
 
-            let location = discount.tplurl.indexOf('http')
-            let url = discount.tplurl.slice(location)
+            let location = discount.tplurl.indexOf('http');
+            let url = discount.tplurl.slice(location);
             this.props.navigation.navigate('Web', { url: url })
         }
     }

@@ -6,6 +6,9 @@
  * @flow
  */
 
+/**
+ *  theme: '#06C1AE'： 决定下方tab颜色
+ */
 
 export default {
     theme: '#06C1AE',

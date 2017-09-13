@@ -1,4 +1,6 @@
-
+/**
+ * 根路由
+ */
 
 import React, { PureComponent } from 'react'
 import { StatusBar } from 'react-native'
@@ -16,8 +18,10 @@ import MineScene from './scene/Mine/MineScene'
 import WebScene from './widget/WebScene'
 import GroupPurchaseScene from './scene/GroupPurchase/GroupPurchaseScene'
 
+// 定义全局变量
 const lightContentScenes = ['Home', 'Mine'];
 
+// 全局方法
 function getCurrentRouteName(navigationState) {
     if (!navigationState) {
         return null;
@@ -30,7 +34,7 @@ function getCurrentRouteName(navigationState) {
     return route.routeName;
 }
 
-// create a component
+// create a component 创建组件
 class RootScene extends PureComponent {
     constructor() {
         super();
@@ -118,7 +122,7 @@ const Tab = TabNavigator(
                     />
                 )
             }),
-        },
+        }
     },
     {
         tabBarComponent: TabBarBottom,
